@@ -10,4 +10,11 @@
   <button
     {{ $props.except(['variant','text']).merge({ type:"submit", class: ["min-w-40 bg-flexoki-red-200 px-3 py-2 hover:bg-flexoki-red-300 active:bg-flexoki-red-300 focus:bg-flexoki-red-300 rounded-md"] }).toAttrs() }}
   >{{ text }}</button>
-@endif
+@elseif(variant === "icon")
+  <button
+    {{ $props.except(['variant','text']).merge({ type:"submit", class: ["size-8 rounded-md border border-flexoki-base-100 p-2 hover:bg-flexoki-base-300 focus:bg-flexoki-base-300 active:bg-flexoki-base-400"] }).toAttrs() }}
+  >
+    {{ text }}
+  </button>
+@end
+

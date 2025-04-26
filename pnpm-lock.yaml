@@ -26,6 +26,9 @@ dependencies:
   '@adonisjs/vite':
     specifier: ^4.0.0
     version: 4.0.0(@adonisjs/core@6.17.2)(@adonisjs/shield@8.2.0)(edge.js@6.2.1)(vite@6.3.3)
+  '@iconify-json/lucide':
+    specifier: ^1.2.39
+    version: 1.2.39
   '@libsql/sqlite3':
     specifier: ^0.3.1
     version: 0.3.1
@@ -67,9 +70,6 @@ devDependencies:
   '@adonisjs/tsconfig':
     specifier: ^1.4.0
     version: 1.4.0
-  '@iconify-json/lucide':
-    specifier: ^1.2.39
-    version: 1.2.39
   '@japa/assert':
     specifier: ^4.0.1
     version: 4.0.1(@japa/runner@4.2.0)
@@ -973,7 +973,7 @@ packages:
     resolution: {integrity: sha512-1BKCamEZRvArR7PErYCP4SZo9pAANJy6iQWpynI3GM8QKSQtWQgvw6usqGIFCQeJwFZHPOn2OcbDR4P56DyEaQ==}
     dependencies:
       '@iconify/types': 2.0.0
-    dev: true
+    dev: false
 
   /@iconify/iconify@3.1.1:
     resolution: {integrity: sha512-1nemfyD/OJzh9ALepH7YfuuP8BdEB24Skhd8DXWh0hzcOxImbb1ZizSZkpCzAwSZSGcJFmscIBaBQu+yLyWaxQ==}
@@ -984,6 +984,7 @@ packages:
 
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
+    dev: false
 
   /@japa/assert@4.0.1(@japa/runner@4.2.0):
     resolution: {integrity: sha512-n/dA9DVLNvM/Bw8DtN8kBdPjYsSHe3XTRjF5+U8vlzDavpW9skUANl2CHR1K/TBWZxwMfGi15SJIjo6UCs09AA==}

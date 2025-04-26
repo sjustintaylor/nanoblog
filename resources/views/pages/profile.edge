@@ -1,8 +1,11 @@
 @app()
   @slot('main')
-    <h1>
+    <h1 class="size-">
       Hello world
     </h1>
-    @!button({text:"Log out", type:"submit"})
+
+    @!button({variant:"icon", text:svg('lucide:log-out', {width: 16,
+    height: 16,}), type:"submit"})
+
   @end
 @end

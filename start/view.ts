@@ -1,9 +1,13 @@
-import { Edge } from 'edge.js'
-import { edgeIconify } from 'edge-iconify'
+import edge from 'edge.js'
 
-const edge = Edge.create()
+import { edgeIconify, addCollection } from 'edge-iconify'
+import { icons as lucide } from '@iconify-json/lucide'
 
 /**
- * Register the plugin
+ * Add heroIcons collection
+ */
+addCollection(lucide)
+/**
+ * Register a plugin
  */
 edge.use(edgeIconify)
