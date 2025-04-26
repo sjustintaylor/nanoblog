@@ -1,11 +1,37 @@
 @app()
+  @slot("header")
+    <div class="max-w-2/3 mx-auto flex flex-row items-baseline justify-start">
+      <h3>
+        @!link({variant:"heading", href:`/profiles/${username}`, text: username})
+      </h3>
+      <form
+        method="POST"
+        action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
+        class="ml-6"
+      >
+        {{ csrfField() }}
+        @!button({variant:"icon", text:svg('lucide:log-out', {width: 16,
+        height: 16,})})
+      </form>
+    </div>
+    <p class="text-flexoki-base-300 max-w-2/3 mx-auto">
+      {{ bio }}
+    </p>
+  @end
   @slot('main')
-    <h1 class="size-">
-      Hello world
-    </h1>
-
-    @!button({variant:"icon", text:svg('lucide:log-out', {width: 16,
-    height: 16,}), type:"submit"})
-
+    <div class="max-w-7/12 mx-auto mt-18">
+      @each(post in posts)
+        <div class="mb-14">
+          <div class="text-flexoki-base-300">
+            {{ post.date }}
+          </div>
+          @each(para in post.contents)
+            <p>
+              {{ para }}
+            </p>
+          @end
+        </div>
+      @end
+    </div>
   @end
 @end

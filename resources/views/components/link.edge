@@ -1,6 +1,10 @@
-@if(variant === "anchor")
+@if(variant === "heading")
   <a
-    {{ $props.except(['variant','text']).merge({ class: ["min-w-40 text-center text-flexoki-blue-400"] }).toAttrs() }}
+    {{ $props.except(['variant','text']).merge({ class: [" hover:underline active:underline focus:underline"] }).toAttrs() }}
+  >{{ text }}</a>
+@elseif(variant === "anchor")
+  <a
+    {{ $props.except(['variant','text']).merge({ class: ["min-w-40 text-center text-flexoki-blue-400 hover:underline active:underline focus:underline"] }).toAttrs() }}
   >{{ text }}</a>
 @elseif(variant === "primary")
   <a
