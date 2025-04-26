@@ -1,0 +1,37 @@
+@app()
+  @slot("main")
+    <h2 class="font-bold font-serif text-[2rem] mb-8">
+      Log in
+    </h2>
+    <form
+      method="POST"
+      action="{{ route('auth.authenticate.store') }}"
+      class="flex flex-col items-start justify-start space-y-6 max-w-1/2 mx-auto"
+    >
+      {{ csrfField() }}
+      @error('E_INVALID_CREDENTIALS')
+        {{ $message }}
+      @end
+          
+      <label class="w-full">
+        <span class="font-bold mb-2 inline-block">Email</span>
+        @!input({type:"email", name:"email", autocomplete:"email", value:old('email') || ''})
+
+        @inputError('email')
+          {{ $messages.join(', ') }}
+        @end
+      </label>
+
+      <label>
+        <span class="font-bold mb-2 inline-block">Password</span>
+        @!input({type:"password", name:"password", autocomplete:"current-password", value:old('password') || ''})
+      </label>
+
+      <div class="w-full flex flex-row items-center justify-end space-x-4">
+        @!link({variant:"secondary", href:"/register", text:"Register"})
+        @!button({variant:"primary", type:'submit', text:"Log in"})
+
+      </div>
+    </form>
+  @end
+@end

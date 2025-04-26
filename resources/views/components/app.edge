@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    @vite(['resources/css/app.css', 'resources/css/typography.css','resources/js/app.js'])
+
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link
+      href="https://fonts.bunny.net/css?family=libre-baskerville:400,400i,700,700i|source-sans-pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+
+    <title>
+      {{ title || "NanoBlog - think big, write small" }}
+    </title>
+    @if ($slots.meta)
+      {{{ await $slots.meta() }}}
+    @endif
+  </head>
+  <body class="bg-flexoki-paper pt-8">
+    @if($slots.header)
+      <header class="max-w-4xl mx-auto">
+        {{{ await $slots.header() }}}
+      </header>
+    @end
+    @if($slots.main)
+      <main class="max-w-4xl mx-auto">
+        {{{ await $slots.main() }}}
+      </main>
+    @end
+    
+    @if($slots.footer)
+      <footer class="max-w-4xl mx-auto">
+        {{{ await $slots.footer() }}}
+      </footer>
+    @end
+  </body>
+</html>

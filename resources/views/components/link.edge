@@ -1,0 +1,17 @@
+@if(variant === "anchor")
+  <a
+    {{ $props.except(['variant','text']).merge({ class: ["min-w-40 text-center text-flexoki-blue-400"] }).toAttrs() }}
+  >{{ text }}</a>
+@elseif(variant === "primary")
+  <a
+    {{ $props.except(['variant','text']).merge({ class: ["min-w-40 text-center bg-flexoki-blue-200 px-4 py-2 rounded-md hover:bg-flexoki-blue-300 focus:bg-flexoki-blue-300 active:bg-flexoki-blue-400"] }).toAttrs() }}
+  >{{ text }}</a>
+@elseif(variant === "secondary")
+  <a
+    {{ $props.except(['variant','text']).merge({ class: ["min-w-40 text-center bg-flexoki-base-200 px-4 py-2 rounded-md hover:bg-flexoki-base-300 focus:bg-flexoki-base-300 active:bg-flexoki-base-400"] }).toAttrs() }}
+  >{{ text }}</a>
+@elseif(variant === "warning")
+  <a
+    {{ $props.except(['variant','text']).merge({ class: ["min-w-40 text-center bg-flexoki-red-200 px-3 py-2 hover:bg-flexoki-red-300 active:bg-flexoki-red-300 focus:bg-flexoki-red-300 rounded-md"] }).toAttrs() }}
+  >{{ text }}</a>
+@endif

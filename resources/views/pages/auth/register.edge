@@ -1,0 +1,52 @@
+@app({title:"NanoBlog - think big, write small"})
+  @slot("header")
+    <h2>
+      Sign up
+    </h2>
+  @end
+  
+  @slot("main")
+    <form
+      method="POST"
+      action="{{ route('auth.register.store') }}"
+      class="flex flex-col items-start justify-start space-y-6 max-w-1/2 mx-auto"
+    >
+      {{ csrfField() }}
+      
+      <label>
+        <span class="font-bold mb-2 inline-block">Username</span>
+        @!input({type:"text", name:"username", autocomplete:"off", value:old('username') || '' })
+
+        @inputError('username')
+          {{ $messages.join(', ') }}
+        @end
+      </label>
+
+      <label class="w-full">
+        <span class="font-bold mb-2 inline-block">Email</span>
+        @!input({type:"email", name:"email", autocomplete:"email", value: old('email') || '' })
+
+        @inputError('email')
+          {{ $messages.join(', ') }}
+        @end
+      </label>
+
+      <label>
+        <span class="font-bold mb-2 inline-block">Password</span>
+        @!input({type:"password", name:"password", autocomplete:"new-password", value: old('password') || '' })
+
+        @inputError('password')
+          {{ $messages.join(', ') }}
+        @end
+      </label>
+
+      <div class="w-full flex flex-row items-center justify-end space-x-6">
+        @!link({variant:"secondary", text:"Sign in", href:"/authenticate"})
+        @!button({variant:"primary", text:"Create your account"})
+
+      </div>
+
+    </form>
+
+  @end
+@end
