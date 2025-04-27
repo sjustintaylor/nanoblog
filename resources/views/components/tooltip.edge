@@ -1,0 +1,19 @@
+<div class="group relative w-max">
+  @if($slots.target)
+    {{{ await $slots.target() }}}
+  @end
+  
+  @if(variant==="bottom")
+    <span
+      class="pointer-events-none absolute top-9 -left-2 w-max opacity-0 transition-opacity group-hover:opacity-100 bg-flexoki-base-50 border border-flexoki-base-150 px-2 py-1 rounded-md"
+    >
+      {{ text }}
+    </span>
+  @else
+    <span
+      class="pointer-events-none absolute -top-11 -left-2 w-max opacity-0 transition-opacity group-hover:opacity-100 bg-flexoki-base-50 border border-flexoki-base-150 px-2 py-1 rounded-md"
+    >
+      {{ text }}
+    </span>
+  @end
+</div>

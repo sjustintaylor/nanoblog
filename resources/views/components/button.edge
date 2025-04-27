@@ -1,6 +1,6 @@
 @if(variant === "primary")
   <button
-    {{ $props.except(['variant','text']).merge({type:"submit", class: ["min-w-40 bg-flexoki-blue-200 px-4 py-2 rounded-md hover:bg-flexoki-blue-300 focus:bg-flexoki-blue-300 active:bg-flexoki-blue-400"] }).toAttrs() }}
+    {{ $props.except(['variant','text']).merge({type:"submit", class: ["min-w-40 bg-flexoki-purple-200 px-4 py-2 rounded-md hover:bg-flexoki-purple-300 focus:bg-flexoki-purple-300 active:bg-flexoki-purple-400"] }).toAttrs() }}
   >{{ text }}</button>
 @elseif(variant === "secondary")
   <button

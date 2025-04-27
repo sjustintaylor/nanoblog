@@ -18,8 +18,13 @@
             class="max-h-min"
           >
             {{ csrfField() }}
-            @!button({variant:"icon", text:svg('lucide:log-out', {width: 16,
-            height: 16,})})
+            @tooltip({text:"Log out", variant:"bottom"})
+              @slot("target")
+                @!button({variant:"icon", text:svg('lucide:log-out', {width: 16,
+                height: 16,})})
+              @end
+            @end
+            
           </form>
         @end
       </div>
@@ -51,11 +56,15 @@
                 <form
                   method="POST"
                   action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
-                  class="max-h-min text-flexoki-base-500"
+                  class="max-h-min text-flexoki-black"
                 >
                   {{ csrfField() }}
-                  @!button({variant:"icon", text:svg('lucide:pen-line', {width: 16,
-                  height: 16,})})
+                  @tooltip({text:"Edit this post"})
+                    @slot("target")
+                      @!button({variant:"icon", class:"text-flexoki-base-500", text:svg('lucide:pen-line', {width: 16,
+                      height: 16,})})
+                    @end
+                  @end
                 </form>
                 <form
                   method="POST"
@@ -63,18 +72,18 @@
                   class="max-h-min text-flexoki-red-400"
                 >
                   {{ csrfField() }}
-                  @!button({variant:"icon", text:svg('lucide:trash-2', {width: 16,
-                  height: 16,})})
+                  @tooltip({text:"Delete this post"})
+                    @slot('target')
+                      @!button({variant:"icon", text:svg('lucide:trash-2', {width: 16,
+                      height: 16,})})
+                    @end
+                  @end
                 </form>
               </div>
             @end
           </div>
-          <div>
-            @each(para in post.contents)
-              <p>
-                {{ para }}
-              </p>
-            @end
+          <div class="max-w-2xl">
+            {{{ post.renderedHtml }}}
           </div>
         </div>
       @end
