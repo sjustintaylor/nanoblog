@@ -1,9 +1,9 @@
 @app()
   @slot("usercontrols")
+    @if(auth.isAuthenticated)
+      <div class="w-full bg-flexoki-base-100">
+        <div class="max-w-4xl mx-auto flex flex-row items-center justify-between min-h-18 px-4 lg:px-0">
 
-    <div class="w-full bg-flexoki-base-100">
-      <div class="max-w-4xl mx-auto flex flex-row items-center justify-between min-h-18 px-4 lg:px-0">
-        @if(auth.isAuthenticated)
           <form
             method="POST"
             action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
@@ -26,10 +26,10 @@
             @end
             
           </form>
-        @end
-      </div>
-    </div>
 
+        </div>
+      </div>
+    @end
   @end
   @slot("header")
 
@@ -39,9 +39,28 @@
       </h3>
 
     </div>
-    <p class="text-flexoki-base-300 w-full lg:max-w-7/12 px-4 lg:px-0">
-      {{ bio }}
-    </p>
+    <div class="flex flex-row items-start justify-start">
+
+      <p class="text-flexoki-base-300 w-full lg:max-w-7/12 px-4 lg:px-0">
+        {{ bio }}
+      </p>
+      @if(auth.isAuthenticated)
+        <form
+          method="POST"
+          action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
+          class="max-h-min text-flexoki-black mt-1.5 ml-3"
+        >
+          {{ csrfField() }}
+          @tooltip({text:"Edit your bio"})
+            @slot("target")
+              @!button({variant:"icon", class:"text-flexoki-base-500", text:svg('lucide:pen-line', {width: 16,
+              height: 16,})})
+            @end
+          @end
+        </form>
+      @end
+    </div>
+
   @end
   @slot('main')
     <div class="w-full mx-auto mt-18 px-4 lg:px-0">
