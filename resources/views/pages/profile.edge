@@ -1,35 +1,81 @@
 @app()
+  @slot("usercontrols")
+
+    <div class="w-full bg-flexoki-base-100">
+      <div class="max-w-4xl mx-auto flex flex-row items-center justify-between min-h-18 px-4 lg:px-0">
+        @if(auth.isAuthenticated)
+          <form
+            method="POST"
+            action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
+            class="max-h-min"
+          >
+            {{ csrfField() }}
+            @!button({variant:"primary", text:"Create new post"})
+          </form>
+          <form
+            method="POST"
+            action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
+            class="max-h-min"
+          >
+            {{ csrfField() }}
+            @!button({variant:"icon", text:svg('lucide:log-out', {width: 16,
+            height: 16,})})
+          </form>
+        @end
+      </div>
+    </div>
+
+  @end
   @slot("header")
-    <div class="max-w-2/3 mx-auto flex flex-row items-baseline justify-start">
+
+    <div class="w-full flex flex-row items-baseline justify-start px-4 lg:px-0">
       <h3>
         @!link({variant:"heading", href:`/profiles/${username}`, text: username})
       </h3>
-      <form
-        method="POST"
-        action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
-        class="ml-6"
-      >
-        {{ csrfField() }}
-        @!button({variant:"icon", text:svg('lucide:log-out', {width: 16,
-        height: 16,})})
-      </form>
+
     </div>
-    <p class="text-flexoki-base-300 max-w-2/3 mx-auto">
+    <p class="text-flexoki-base-300 w-full lg:max-w-7/12 px-4 lg:px-0">
       {{ bio }}
     </p>
   @end
   @slot('main')
-    <div class="max-w-7/12 mx-auto mt-18">
+    <div class="w-full mx-auto mt-18 px-4 lg:px-0">
       @each(post in posts)
-        <div class="mb-14">
-          <div class="text-flexoki-base-300">
-            {{ post.date }}
+        <div
+          class="mb-14 flex flex-col items-start justify-start lg:flex-row lg:items-start lg:justify-start"
+        >
+          <div class="text-flexoki-base-300 w-full lg:max-w-max mb-8 lg:mb-0 lg:mr-8">
+            <span>{{ post.date }}</span>
+            @if(auth.isAuthenticated)
+              <div class="flex flex-row items-baseline justify-around lg:justify-between">
+                <form
+                  method="POST"
+                  action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
+                  class="max-h-min text-flexoki-base-500"
+                >
+                  {{ csrfField() }}
+                  @!button({variant:"icon", text:svg('lucide:pen-line', {width: 16,
+                  height: 16,})})
+                </form>
+                <form
+                  method="POST"
+                  action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
+                  class="max-h-min text-flexoki-red-400"
+                >
+                  {{ csrfField() }}
+                  @!button({variant:"icon", text:svg('lucide:trash-2', {width: 16,
+                  height: 16,})})
+                </form>
+              </div>
+            @end
           </div>
-          @each(para in post.contents)
-            <p>
-              {{ para }}
-            </p>
-          @end
+          <div>
+            @each(para in post.contents)
+              <p>
+                {{ para }}
+              </p>
+            @end
+          </div>
         </div>
       @end
     </div>

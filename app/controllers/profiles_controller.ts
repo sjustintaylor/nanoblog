@@ -20,6 +20,7 @@ export default class ProfilesController {
    */
   async show(ctx: HttpContext) {
     // TODO: fetch user record
+    const user = await ctx.auth.authenticate()
     return ctx.view.render('pages/profile', {
       username: ctx.params.id,
       bio: "Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the man talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?",

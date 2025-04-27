@@ -19,7 +19,10 @@
       {{{ await $slots.meta() }}}
     @endif
   </head>
-  <body class="bg-flexoki-paper pt-8">
+  <body class="bg-flexoki-paper ">
+    @if($slots.usercontrols)
+      {{{ await $slots.usercontrols() }}}
+    @end
     @if($slots.header)
       <header class="max-w-4xl mx-auto">
         {{{ await $slots.header() }}}
