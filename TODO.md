@@ -19,7 +19,8 @@
 - [ ] Create post view templates
 
   - [ ] Create modal dialog for adding/editing posts
-    - Use Unpoly for the modal, and QuillJS for the rich text editor
+    - Use AlpineJS for the modal, and QuillJS for the rich text editor
+    - https://thelinuxcode.com/learn-alpine-js-in-this-free-interactive-tutorial/
   - [ ] Create dialog for confirming post delete action
 
 - [ ] Implement ProfilesController.update method to set user bio
