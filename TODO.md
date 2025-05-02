@@ -2,6 +2,9 @@
 
 ## Core Implementation Tasks
 
+- [ ] Implement html sanitization with https://github.com/apostrophecms/sanitize-html
+  - [ ] For posts
+  - [ ] For bio
 - [x] Create a posts migration and model
 
   - [x] Define posts table schema with user relationship
