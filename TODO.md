@@ -26,8 +26,9 @@
 - [ ] Implement ProfilesController.update method to set user bio
 - [ ] Create view templates for editing a user's bio
 
-  - [ ] Use a modal with a textarea, with a limit of 64 words/360 characters
-  - [ ] Create a "Modal" component for reuse
+  - [x] Use a modal with a textarea, with a limit of 64 words/360 characters
+  - [x] Create a "Modal" component for reuse
+  - [ ] Break "Modal" component into pieces for efficiency - container, trigger, body, footer
 
 - [ ] Connect real user data to the profile page
   - [ ] Replace placeholder data with actual user posts

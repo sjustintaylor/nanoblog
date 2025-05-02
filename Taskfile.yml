@@ -13,5 +13,6 @@ tasks:
     cmds:
       - rm -r tmp
       - mkdir tmp
+      - touch tmp/sqlite.db
       - task: db:migrate
       - node ace db:seed

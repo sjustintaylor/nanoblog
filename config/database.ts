@@ -2,12 +2,12 @@ import app from '@adonisjs/core/services/app'
 import { defineConfig } from '@adonisjs/lucid'
 
 const dbConfig = defineConfig({
-  connection: 'libsql',
+  connection: 'sqlite',
   connections: {
-    libsql: {
-      client: 'libsql',
+    sqlite: {
+      client: 'better-sqlite3',
       connection: {
-        filename: `file:${app.tmpPath('libsql.db')}`
+        filename: app.tmpPath('sqlite.db'),
       },
       useNullAsDefault: true,
       migrations: {

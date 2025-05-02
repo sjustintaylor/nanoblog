@@ -1,0 +1,9 @@
+<div x-data="{ open: false }">
+  @if($slots.trigger)
+    {{{ await $slots.trigger() }}}
+  @end
+  
+  @if($slots.inner)
+    {{{ await $slots.inner() }}}
+  @end
+</div>

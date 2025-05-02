@@ -51,7 +51,6 @@
     "vite": "^6.1.0"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.39",
     "@adonisjs/auth": "^9.3.1",
     "@adonisjs/core": "^6.17.2",
     "@adonisjs/lucid": "^21.6.0",
@@ -59,14 +58,16 @@
     "@adonisjs/shield": "^8.1.2",
     "@adonisjs/static": "^1.1.1",
     "@adonisjs/vite": "^4.0.0",
-    "@libsql/sqlite3": "^0.3.1",
+    "@iconify-json/lucide": "^1.2.39",
     "@tailwindcss/vite": "^4.1.4",
     "@vinejs/vine": "^3.0.0",
+    "alpinejs": "^3.14.9",
+    "better-sqlite3": "^11.9.1",
     "edge-iconify": "^2.0.1",
     "edge.js": "^6.2.1",
     "luxon": "^3.6.1",
+    "quill": "2.0.3",
     "reflect-metadata": "^0.2.2",
-    "sqlite3": "^5.1.7",
     "tailwindcss": "^4.1.4"
   },
   "hotHook": {
