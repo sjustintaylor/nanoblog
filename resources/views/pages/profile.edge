@@ -49,26 +49,30 @@
         <form
           id="bio-form"
           method="POST"
-          action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
+          action="{{ route('profiles.update', {id: username},{ qs: { _method: 'PUT' }}) }}"
           class="max-h-min text-flexoki-black mt-1.5 ml-3"
+          {{-- target="hiddenFrame" --}}
         >
           {{ csrfField() }}
-          @modal({buttonProps:{variant:"icon", type:"button",class:"text-flexoki-base-500", text:svg('lucide:pen-line', {width: 16, height: 16})}, buttonTooltip:"Edit your bio"})
-            @slot("body")
-              <div id="bio">
-                {{{ bio }}}
-              </div>
+          @modal.outer({props:{variant:"icon", type:"button",class:"text-flexoki-base-500", text:svg('lucide:pen-line', {width: 16, height: 16})}, tooltip:"Edit your bio"})
+            @slot("inner")
+              @modal.inner({heading:"Edit your bio"})
+                @slot("body")
+                  <div id="bio">
+                    {{{ bio }}}
+                  </div>
 
-              <div id="bio-counter" class=" text-right ">
-                0 of 360 characters
-              </div>
-            @end
-            @slot("footer")
-              @!button({"@click":"open = false", type:"button", text:"Discard changes", variant:"warning"})
-              @!button({text:"Update your bio", type:"button",variant:"primary"})
+                  <div id="bio-counter" class=" text-right ">
+                    0 of 360 characters
+                  </div>
+                @end
+                @slot("footer")
+                  @!button({"@click":"open = false", type:"button", text:"Close", variant:"warning"})
+                  @!button({text:"Update your bio",  variant:"primary"})
+                @end
+              @end
             @end
           @end
-          
         </form>
       @end
     </div>

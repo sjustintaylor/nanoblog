@@ -1,6 +1,8 @@
 <div x-data="{ open: false }">
-  @if($slots.trigger)
-    {{{ await $slots.trigger() }}}
+  @tooltip({text: tooltip})
+    @slot("target")
+      @!button({"@click":"open = true",  ...props})
+    @end
   @end
   
   @if($slots.inner)

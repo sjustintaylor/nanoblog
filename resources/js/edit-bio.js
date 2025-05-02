@@ -16,5 +16,5 @@ const bio = new Quill('#bio', {
 const form = document.querySelector('#bio-form')
 form.addEventListener('formdata', (event) => {
   // Append Quill content before submitting
-  event.formData.append('bio', JSON.stringify(bio.getContents().ops))
+  event.formData.append('bio', bio.getSemanticHTML())
 })
