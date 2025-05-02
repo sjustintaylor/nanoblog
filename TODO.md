@@ -23,16 +23,16 @@
     - https://thelinuxcode.com/learn-alpine-js-in-this-free-interactive-tutorial/
   - [ ] Create dialog for confirming post delete action
 
-- [ ] Implement ProfilesController.update method to set user bio
-- [ ] Create view templates for editing a user's bio
+- [x] Implement ProfilesController.update method to set user bio
+- [x] Create view templates for editing a user's bio
 
   - [x] Use a modal with a textarea, with a limit of 64 words/360 characters
   - [x] Create a "Modal" component for reuse
-  - [ ] Break "Modal" component into pieces for efficiency - container, trigger, body, footer
+  - [x] Break "Modal" component into pieces for efficiency - container, trigger, body, footer
 
-- [ ] Connect real user data to the profile page
-  - [ ] Replace placeholder data with actual user posts
-  - [ ] Implement proper user fetching in ProfilesController.show
+- [x] Connect real user data to the profile page
+  - [x] Replace placeholder data with actual user posts
+  - [x] Implement proper user fetching in ProfilesController.show
 
 ## Additional Enhancements
 
