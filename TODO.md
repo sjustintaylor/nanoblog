@@ -21,10 +21,10 @@
 
 - [ ] Create post view templates
 
-  - [ ] Create modal dialog for adding/editing posts
-    - Use AlpineJS for the modal, and QuillJS for the rich text editor
-    - https://thelinuxcode.com/learn-alpine-js-in-this-free-interactive-tutorial/
-  - [ ] Create dialog for confirming post delete action
+  - [ ] Create "edit post" component - switches between post and editor using alpine x-html?
+    - No modals for editing. One quill instance at a time, only one post being edited - changing will close the previous?
+  - [ ] Create dialog for confirming post delete action - use current modal
+- [ ] Change "edit bio" modal to use the "editor in place" UI, same as posts.
 
 - [x] Implement ProfilesController.update method to set user bio
 - [x] Create view templates for editing a user's bio
@@ -40,5 +40,6 @@
 ## Additional Enhancements
 
 - [ ] Add word count validation (500 word/3000 character limit)
+  - [ ] Add serverside validation
 - [ ] Implement proper error handling
 - [ ] Add tests for posts functionality
