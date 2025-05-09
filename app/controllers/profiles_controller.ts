@@ -3,7 +3,7 @@ import Post from '#models/post'
 import User from '#models/user'
 
 import type { HttpContext } from '@adonisjs/core/http'
-import { DateTime } from 'luxon'
+import sanitizeHtml from 'sanitize-html'
 
 export default class ProfilesController {
   /**
@@ -48,7 +48,7 @@ export default class ProfilesController {
   async update(ctx: HttpContext) {
     const user = await ctx.auth.authenticate()
     if (ctx.auth.isAuthenticated) {
-      user.description = ctx.request.body().bio
+      user.description = sanitizeHtml(ctx.request.body().bio)
       await user.save()
 
       return ctx.response.redirect(`${RoutePath.PROFILE}/${user.username}`)

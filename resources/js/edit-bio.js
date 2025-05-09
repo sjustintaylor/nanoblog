@@ -18,3 +18,5 @@ form.addEventListener('formdata', (event) => {
   // Append Quill content before submitting
   event.formData.append('bio', bio.getSemanticHTML())
 })
+
+export function createEditor(cssSelector, counterLimit) {}
