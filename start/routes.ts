@@ -11,6 +11,7 @@ import { RoutePath } from '#config/routes'
 const RegisterController = () => import('#controllers/auth/register_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const PostsController = () => import('#controllers/posts_controller')
 const AuthenticateController = () => import('#controllers/auth/authenticate_controller')
 const ProfilesController = () => import('#controllers/profiles_controller')
 
@@ -18,6 +19,7 @@ const ProfilesController = () => import('#controllers/profiles_controller')
 router.on('/').render('pages/home')
 
 router.resource('profiles', ProfilesController).only(['index', 'show', 'update'])
+router.resource('posts', PostsController).middleware('*', middleware.auth())
 
 // Authentication
 router

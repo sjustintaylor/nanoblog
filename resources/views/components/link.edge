@@ -18,4 +18,9 @@
   <a
     {{ $props.except(['variant','text']).merge({ class: ["min-w-40 text-center bg-flexoki-red-200 px-3 py-2 hover:bg-flexoki-red-300 active:bg-flexoki-red-300 focus:bg-flexoki-red-300 rounded-md"] }).toAttrs() }}
   >{{ text }}</a>
+@elseif(variant==="icon")
+  <a
+    {{ $props.except(['variant','text']).merge({ class: ["inline-block size-8 rounded-md border border-flexoki-base-100 p-2 hover:bg-flexoki-base-300 focus:bg-flexoki-base-300 active:bg-flexoki-base-400 z-0"] }).toAttrs() }}
+  >{{ text }}</a>
+
 @endif

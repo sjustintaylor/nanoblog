@@ -1,0 +1,41 @@
+@app({assets:["resources/js/edit-post.js"]})
+
+  @slot("usercontrols")
+    @if(auth.isAuthenticated)
+      <div class="w-full bg-flexoki-base-100">
+        <div class="max-w-4xl mx-auto flex flex-row items-center justify-between min-h-18 px-4 lg:px-0">
+
+          @!link({variant:"anchor", text:"Return to profile", href:"/profiles"})
+
+          <form
+            method="POST"
+            action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
+            class="max-h-min"
+          >
+            {{ csrfField() }}
+            @tooltip({text:"Log out", variant:"bottom"})
+              @slot("target")
+                @!button({variant:"icon", text:svg('lucide:log-out', {width: 16,
+                height: 16,})})
+              @end
+            @end
+            
+          </form>
+
+        </div>
+      </div>
+    @end
+  @end
+  
+  @slot('main')
+
+    <div class="w-full mx-auto mt-18 px-4 lg:px-0">
+
+    </div>
+  @end
+  @slot("footer")
+    <div class="flex flex-row items-center justify-center mb-16">
+      @!link({variant:"anchor",text:"Powered by NanoBlog", href:"/"})
+    </div>
+  @end
+@end

@@ -1,18 +1,11 @@
-@app({assets:["resources/js/quill-editors.js"]})
+@app({assets:["resources/js/edit-bio.js"]})
 
   @slot("usercontrols")
     @if(auth.isAuthenticated)
       <div class="w-full bg-flexoki-base-100">
         <div class="max-w-4xl mx-auto flex flex-row items-center justify-between min-h-18 px-4 lg:px-0">
 
-          <form
-            method="POST"
-            action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
-            class="max-h-min"
-          >
-            {{ csrfField() }}
-            @!button({variant:"primary", text:"Create new post"})
-          </form>
+          @!link({variant:"primary", text:"Create new post", href:"/posts/create"})
           <form
             method="POST"
             action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
@@ -40,7 +33,7 @@
       </h3>
 
     </div>
-    <div class="flex flex-row items-start justify-start">
+    <div class="flex flex-row items-start justify-start border-b border-b-flexoki-base-100 pb-12">
 
       <div class="text-flexoki-base-300 w-full lg:max-w-7/12 px-4 lg:px-0">
         {{{ bio }}}
@@ -51,7 +44,6 @@
           method="POST"
           action="{{ route('profiles.update', {id: username},{ qs: { _method: 'PUT' }}) }}"
           class="max-h-min text-flexoki-black mt-1.5 ml-3"
-          {{-- target="hiddenFrame" --}}
         >
           {{ csrfField() }}
           @modal.outer({props:{variant:"icon", type:"button",class:"text-flexoki-base-500", text:svg('lucide:pen-line', {width: 16, height: 16})}, tooltip:"Edit your bio"})
@@ -80,7 +72,7 @@
   @end
   @slot('main')
 
-    <div class="w-full mx-auto mt-18 px-4 lg:px-0">
+    <div class="w-full mx-auto mt-16 px-4 lg:px-0">
       @each(post in posts)
         <div
           class="mb-14 flex flex-col items-start justify-start lg:flex-row lg:items-start lg:justify-start"
@@ -88,32 +80,34 @@
           <div class="text-flexoki-base-300 w-full lg:max-w-max mb-8 lg:mb-0 lg:mr-8">
             <span>{{ post.date }}</span>
             @if(auth.isAuthenticated)
-              <div class="flex flex-row items-baseline justify-around lg:justify-between">
+              <div class="flex flex-row items-start justify-around lg:justify-between">
+                @tooltip({text:"Edit this post"})
+                  @slot("target")
+                    @!link({variant:"icon",href:`/posts/${post.id}/edit`, class:"text-flexoki-base-500 ", text:svg('lucide:pen-line', {width: 16,
+                    height: 16,})})
+                  @end
+                @end
                 <form
                   method="POST"
-                  action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
-                  class="max-h-min text-flexoki-black -z-0"
+                  action="{{ route('posts.destroy', {id: post.id},{ qs: { _method: 'DELETE' }}) }}"
+                  class="max-h-min text-flexoki-black"
                 >
                   {{ csrfField() }}
-                  @tooltip({text:"Edit this post"})
-                    @slot("target")
-                      @!button({variant:"icon", class:"text-flexoki-base-500", text:svg('lucide:pen-line', {width: 16,
-                      height: 16,})})
+                  @modal.outer({props:{variant:"icon", type:"button",class:"text-flexoki-red-500", text:svg('lucide:trash-2', {width: 16,
+                  height: 16,})}, tooltip:"Permanently delete this post?"})
+                    @slot("inner")
+                      @modal.inner({heading:"Delete this post"})
+                        @slot("body")
+                          {{{ post.renderedHtml }}}
+                        @end
+                        @slot("footer")
+                          @!button({"@click":"open = false", type:"button", text:"Cancel", variant:"secondary"})
+                          @!button({text:"Delete",  variant:"warning"})
+                        @end
+                      @end
                     @end
                   @end
-                </form>
-                <form
-                  method="POST"
-                  action="{{ route('auth.authenticate.destroy', {id: username},{ qs: { _method: 'DELETE' }}) }}"
-                  class="max-h-min text-flexoki-red-400"
-                >
-                  {{ csrfField() }}
-                  @tooltip({text:"Delete this post"})
-                    @slot('target')
-                      @!button({variant:"icon", text:svg('lucide:trash-2', {width: 16,
-                      height: 16,})})
-                    @end
-                  @end
+                  
                 </form>
               </div>
             @end

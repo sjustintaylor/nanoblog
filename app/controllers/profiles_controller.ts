@@ -38,7 +38,7 @@ export default class ProfilesController {
     return ctx.view.render('pages/profile', {
       username: ctx.params.id,
       bio: user.description,
-      posts: posts.map((el) => ({ date: el.createdAt, renderedHtml: el.renderedHtml })),
+      posts: posts.map((el) => ({ id: el.id, date: el.createdAt, renderedHtml: el.renderedHtml })),
     })
   }
 
