@@ -1,6 +1,7 @@
 import { RoutePath } from '#config/routes'
 import Post from '#models/post'
 import type { HttpContext } from '@adonisjs/core/http'
+import sanitizeHtml from 'sanitize-html'
 
 // TODO don't forget to check word/character count WITHOUT html markup included
 export default class PostsController {
@@ -38,7 +39,6 @@ export default class PostsController {
         id: post.id,
         date: post.createdAt,
         renderedHtml: post.renderedHtml,
-        delta: post.delta,
       },
     })
   }
@@ -46,7 +46,22 @@ export default class PostsController {
   /**
    * Handle the form submission to update a specific post by id
    */
-  async update(ctx: HttpContext) {}
+  async update(ctx: HttpContext) {
+    const user = await ctx.auth.authenticate()
+    if (ctx.auth.isAuthenticated) {
+      const post = await Post.findBy({ id: ctx.params.id, user_id: user.id })
+      if (!post) {
+        return ctx.response.redirect(`${RoutePath.PROFILE}/${user.username}`)
+      }
+      const rawHtml = (ctx.request.body().post as string).replaceAll('&nbsp;', ' ')
+      post.renderedHtml = sanitizeHtml(rawHtml)
+      await post.save()
+
+      return ctx.response.redirect(`${RoutePath.PROFILE}/${user.username}`)
+    }
+
+    return ctx.response.redirect(RoutePath.HOME)
+  }
 
   /**
    * Delete record

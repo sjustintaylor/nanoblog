@@ -12,7 +12,6 @@ export default class extends BaseSchema {
       table.timestamp('deleted_at').nullable()
 
       table.string('rendered_html')
-      table.json('delta')
 
       table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE')
     })

@@ -1,21 +1,32 @@
 import Quill from './quill'
 
-const post = new Quill(id, {
+const post = new Quill('#post', {
   theme: 'snow',
   modules: {
-    toolbar: [['bold', 'italic', 'underline', 'strike'], ['link']],
+    toolbar: [
+      [{ font: [] }],
+      ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+      ['blockquote', 'code-block', 'link'],
+
+      [{ list: 'ordered' }, { list: 'bullet' }, { list: 'check' }],
+      [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+      [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+      [{ direction: 'rtl' }], // text direction
+
+      [{ align: [] }],
+
+      ['clean'],
+    ],
     counter: {
-      container: id,
+      container: '#post-counter',
       unit: 'character',
       limit: 3000,
     },
   },
-
-  formats: ['italic', 'bold', 'underline', 'link', 'strike'],
 })
 
-const form = document.querySelector(`#${id}-form`)
+const form = document.querySelector(`#post-form`)
 form.addEventListener('formdata', (event) => {
   // Append Quill content before submitting
-  event.formData.append('data', JSON.stringify(post.getContents().ops))
+  event.formData.append('post', post.getSemanticHTML())
 })

@@ -16,7 +16,4 @@ export default class Post extends BaseModel {
 
   @column()
   declare renderedHtml: string
-
-  @column()
-  declare delta: unknown
 }

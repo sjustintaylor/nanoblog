@@ -32,20 +32,19 @@
       <form
         id="post-form"
         method="POST"
-        action="{{ route('posts.update', {id:post.id},{ qs: { _method: 'PUT' }}) }}"
+        action="{{ route('posts.store') }}"
         class="max-h-min text-flexoki-black mt-1.5 ml-3"
       >
         {{ csrfField() }}
         <div class="w-full mx-auto mt-18 px-4 lg:px-0">
           <div id="post">
-            {{{ post.renderedHtml }}}
+
           </div>
 
           <div id="post-counter" class=" text-right ">
-            0 of 3000 characters
+            0 of 360 characters
           </div>
         </div>
-        @!button({variant:"primary", text:"Save changes"})
       </form>
     @end
   @end

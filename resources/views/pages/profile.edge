@@ -36,7 +36,7 @@
     <div class="flex flex-row items-start justify-start border-b border-b-flexoki-base-100 pb-12">
 
       <div class="text-flexoki-base-300 w-full lg:max-w-7/12 px-4 lg:px-0">
-        {{{ bio }}}
+        {{{ bio || "Tell us who you are..." }}}
       </div>
       @if(auth.isAuthenticated)
         <form
@@ -112,7 +112,7 @@
               </div>
             @end
           </div>
-          <div class="max-w-2xl">
+          <div class="max-w-2xl w-full">
             {{{ post.renderedHtml }}}
           </div>
         </div>
