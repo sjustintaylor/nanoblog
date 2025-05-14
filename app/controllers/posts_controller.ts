@@ -1,6 +1,7 @@
 import { RoutePath } from '#config/routes'
 import Post from '#models/post'
 import type { HttpContext } from '@adonisjs/core/http'
+import { DateTime } from 'luxon'
 import sanitizeHtml from 'sanitize-html'
 
 // TODO don't forget to check word/character count WITHOUT html markup included
@@ -12,7 +13,7 @@ export default class PostsController {
    */
   async create(ctx: HttpContext) {
     const user = await ctx.auth.authenticate()
-    return ctx.view.render('pages/edit_post', {
+    return ctx.view.render('pages/new_post', {
       username: user.username,
     })
   }
@@ -54,7 +55,12 @@ export default class PostsController {
         return ctx.response.redirect(`${RoutePath.PROFILE}/${user.username}`)
       }
       const rawHtml = (ctx.request.body().post as string).replaceAll('&nbsp;', ' ')
-      post.renderedHtml = sanitizeHtml(rawHtml)
+      console.log(rawHtml)
+      post.renderedHtml = sanitizeHtml(rawHtml, {
+        allowedAttributes: {
+          '*': ['class'],
+        },
+      })
       await post.save()
 
       return ctx.response.redirect(`${RoutePath.PROFILE}/${user.username}`)
@@ -66,5 +72,16 @@ export default class PostsController {
   /**
    * Delete record
    */
-  async destroy(ctx: HttpContext) {}
+  async destroy(ctx: HttpContext) {
+    const user = await ctx.auth.authenticate()
+    if (ctx.auth.isAuthenticated) {
+      const post = await Post.findBy({ id: ctx.params.id, user_id: user.id })
+      if (!post) {
+        return ctx.response.redirect(`${RoutePath.PROFILE}/${user.username}`)
+      }
+      post.deletedAt = DateTime.now()
+      await post.save()
+    }
+    return ctx.response.redirect(`${RoutePath.PROFILE}/${user.username}`)
+  }
 }

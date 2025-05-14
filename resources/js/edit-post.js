@@ -1,12 +1,11 @@
 import Quill from './quill'
-
+import 'quill/dist/quill.snow.css'
 const post = new Quill('#post', {
   theme: 'snow',
   modules: {
     toolbar: [
       [{ font: [] }],
       ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-      ['blockquote', 'code-block', 'link'],
 
       [{ list: 'ordered' }, { list: 'bullet' }, { list: 'check' }],
       [{ script: 'sub' }, { script: 'super' }], // superscript/subscript

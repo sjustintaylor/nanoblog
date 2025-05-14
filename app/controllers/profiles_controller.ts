@@ -32,7 +32,9 @@ export default class ProfilesController {
 
     const posts = await Post.query()
       .where('user_id', user.id)
+      .whereNull('deleted_at')
       .orderBy('created_at', 'desc')
+
       .limit(25)
 
     return ctx.view.render('pages/profile', {
