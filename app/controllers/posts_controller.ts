@@ -55,12 +55,8 @@ export default class PostsController {
         return ctx.response.redirect(`${RoutePath.PROFILE}/${user.username}`)
       }
       const rawHtml = (ctx.request.body().post as string).replaceAll('&nbsp;', ' ')
-      console.log(rawHtml)
-      post.renderedHtml = sanitizeHtml(rawHtml, {
-        allowedAttributes: {
-          '*': ['class'],
-        },
-      })
+
+      post.renderedHtml = sanitizeHtml(rawHtml)
       await post.save()
 
       return ctx.response.redirect(`${RoutePath.PROFILE}/${user.username}`)

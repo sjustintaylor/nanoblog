@@ -4,16 +4,10 @@ const post = new Quill('#post', {
   theme: 'snow',
   modules: {
     toolbar: [
-      [{ font: [] }],
       ['bold', 'italic', 'underline', 'strike'], // toggled buttons
 
-      [{ list: 'ordered' }, { list: 'bullet' }, { list: 'check' }],
-      [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
-      [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-      [{ direction: 'rtl' }], // text direction
-
-      [{ align: [] }],
-
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['link'],
       ['clean'],
     ],
     counter: {
